@@ -24,6 +24,7 @@ const Form1 = () => {
         <button type='submit'>Submit</button>
       </form>
     </>
+    
   )
 }
 
