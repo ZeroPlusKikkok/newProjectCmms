@@ -1,3 +1,4 @@
+// Comment this time 24/07/2023
 type Prop = {
   price: number
   rate: number
