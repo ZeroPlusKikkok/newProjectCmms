@@ -26,11 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port, () => {
-<<<<<<< HEAD
-  console.log(`[Server] listening to port: ${port}`);
-=======
   console.log(`[Server] listening on port : ${port}`);
->>>>>>> 5c260419842e904de1fb87432b9d95dc7c236860
 });
 server.on('error', onError);
 server.on('listening', onListening);
