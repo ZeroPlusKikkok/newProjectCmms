@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session')({
-  secret: 'some random string goed here',
+  secret: 'some random string goes here',
   resave: false,
   saveUninitialized: false,
 });
@@ -18,6 +18,7 @@ const User = require('./models/user');
 
 const index = require('./routes/index');
 const api = require('./routes/api/index');
+const auth = require('./routes/api/auth');
 const users = require('./routes/api/users');
 
 const app = express();
@@ -47,6 +48,7 @@ app.use(passport.session());
 // Routes
 app.use('/', index);
 app.use('/api', api);
+app.use('/api/auth', auth);
 app.use('/api/users', users);
 
 // Configure Passport
