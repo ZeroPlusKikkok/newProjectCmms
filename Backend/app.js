@@ -13,6 +13,8 @@ const expressSession = require('express-session')({
   saveUninitialized: false,
 });
 
+const {createContext} =require('./middlewares/middleware');
+
 // Call dataBase
 const User = require('./models/user');
 
@@ -20,6 +22,7 @@ const index = require('./routes/index');
 const api = require('./routes/api/index');
 const auth = require('./routes/api/auth');
 const users = require('./routes/api/users');
+const todos = require('./routes/api/todos');
 
 const app = express();
 
@@ -45,11 +48,14 @@ app.use(expressSession);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(createContext);
+
 // Routes
 app.use('/', index);
 app.use('/api', api);
 app.use('/api/auth', auth);
 app.use('/api/users', users);
+app.use('/api/todos', todos);
 
 // Configure Passport
 passport.use(new LocalStrategy(User.authenticate()));

@@ -5,22 +5,24 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../../models/user');
 
-// Signup to create a new user
-router.post('/signup', async (req, res) => {
+// Signup route to create a new user
+router.post("/signup", async (req, res) => {
+  const { User } = req.context.models;
   try {
     // hash the password
     req.body.password = await bcrypt.hash(req.body.password, 10);
     // create a new user
-    const user = await User.create({}).then(req.body);
-    // 
+    const user = await User.create(req.body);
+    // send new user as response
     res.json(user);
   } catch (error) {
-    res.status(400).json({ error: "Do not create.." });
+    res.status(400).json({ error });
   }
 });
 
-// Login to verify a user and get a token
+// Login route to verify a user and get a token
 router.post("/login", async (req, res) => {
+  const { User } = req.context.models;
   try {
     // check if the user exists
     const user = await User.findOne({ username: req.body.username });
