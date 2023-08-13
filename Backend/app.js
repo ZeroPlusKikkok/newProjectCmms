@@ -16,9 +16,10 @@ const expressSession = require('express-session')({
 // Call dataBase
 const User = require('./models/user');
 
-const index = require('./routes/index');
 const api = require('./routes/api/index');
+const authentication = require('./routes/api/authentication');
 const users = require('./routes/api/users');
+const index = require('./routes/index');
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use(passport.session());
 // Routes
 app.use('/', index);
 app.use('/api', api);
+app.use('/api/authentication', authentication);
 app.use('/api/users', users);
 
 // Configure Passport
